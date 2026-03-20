@@ -1,23 +1,23 @@
 {
-  "nome": "João Silva",
-  "idade": 32,
-  "profissao": "Analista de Sistemas",
-  "renda_mensal": 5000.00,
-  "perfil_investidor": "moderado",
-  "objetivo_principal": "Construir reserva de emergência",
-  "patrimonio_total": 15000.00,
-  "reserva_emergencia_atual": 10000.00,
-  "aceita_risco": false,
-  "metas": [
+  "player_name": "Ricardo Ribeiro",
+  "level": 21,
+  "classe": "Estudante / Estagiário",
+  "mana_mensal": 1500.00,
+  "estilo_de_jogo": "Defensivo (Iniciante)",
+  "missao_principal": "Construir Save Point (Reserva de Emergência)",
+  "inventario_total": 2000.00,
+  "shield_atual": 500.00,
+  "resistencia_a_dano": false,
+  "quest_log": [
     {
-      "meta": "Completar reserva de emergência",
-      "valor_necessario": 15000.00,
-      "prazo": "2026-06"
+      "objetivo": "Completar o Shield (Reserva de Emergência)",
+      "gold_necessario": 5000.00,
+      "deadline": "2026-12"
     },
     {
-      "meta": "Entrada do apartamento",
-      "valor_necessario": 50000.00,
-      "prazo": "2027-12"
+      "objetivo": "Upgrade de Equipamento (Intercâmbio / Notebook)",
+      "gold_necessario": 12000.00,
+      "deadline": "2027-12"
     }
   ]
 }
