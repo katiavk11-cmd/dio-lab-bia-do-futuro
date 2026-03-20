@@ -1,6 +1,6 @@
-data,canal,tema,resumo,resolvido
-2025-09-15,chat,CDB,Cliente perguntou sobre rentabilidade e prazos,sim
-2025-09-22,telefone,Problema no app,Erro ao visualizar extrato foi corrigido,sim
-2025-10-01,chat,Tesouro Selic,Cliente pediu explicação sobre o funcionamento do Tesouro Direto,sim
-2025-10-12,chat,Metas financeiras,Cliente acompanhou o progresso da reserva de emergência,sim
-2025-10-25,email,Atualização cadastral,Cliente atualizou e-mail e telefone,sim
+data,canal,missao_tema,resumo_da_quest,status
+2025-09-15,Chat_Portal,Tutorial_CDB,Player aprendeu sobre multiplicadores e cooldown de resgate,Concluída
+2025-09-22,Suporte_Tecnico,Bug_no_Mapa,Erro ao visualizar o inventário de gold (extrato) foi corrigido,Concluída
+2025-10-01,Chat_Portal,Tutorial_Tesouro_Selic,Player pediu explicação sobre a mecânica de defesa básica do Tesouro Direto,Concluída
+2025-10-12,Chat_Portal,Progresso_Shield,Player conferiu a barra de progresso da Reserva de Emergência,Concluída
+2025-10-25,Suporte_Email,Update_de_Cadastro,Player atualizou as credenciais de acesso ao servidor (e-mail/tel),Concluída
