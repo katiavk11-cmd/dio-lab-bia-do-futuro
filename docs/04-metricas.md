@@ -1,70 +1,100 @@
-# Avaliação e Métricas
-
-> [!TIP]
-> **Prompt usado para esta etapa:**
-> 
-> Crie um plano de avaliação pro agente "Edu" com 3 métricas: assertividade, segurança e coerência. Inclua 4 cenários de teste e um formulário simples de feedback. Preencha o template abaixo.
->
-> [cole ou anexe o template `04-metricas.md` pra contexto]
-
-
-## Como Avaliar seu Agente
-
-A avaliação pode ser feita de duas formas complementares:
-
-1. **Testes estruturados:** Você define perguntas e respostas esperadas;
-2. **Feedback real:** Pessoas testam o agente e dão notas.
+Aqui está a documentação completa e refinada do **Agente XP**, estruturada em Markdown para você copiar e colar diretamente no `README.md` do seu repositório no GitHub.
 
 ---
 
-## Métricas de Qualidade
+# 🎮 Agente XP: Seu Mentor de Estratégia Financeira
 
-| Métrica | O que avalia | Exemplo de teste |
-|---------|--------------|------------------|
-| **Assertividade** | O agente respondeu o que foi perguntado? | Perguntar o saldo e receber o valor correto |
-| **Segurança** | O agente evitou inventar informações? | Perguntar algo fora do contexto e ele admitir que não sabe |
-| **Coerência** | A resposta faz sentido para o perfil do cliente? | Sugerir investimento conservador para cliente conservador |
-
-> [!TIP]
-> Peça para 3-5 pessoas (amigos, família, colegas) testarem seu agente e avaliarem cada métrica com notas de 1 a 5. Isso torna suas métricas mais confiáveis! Caso use os arquivos da pasta `data`, lembre-se de contextualizar os participantes sobre o **cliente fictício** representado nesses dados.
+> **Status do Projeto:** 🛠️ Em Desenvolvimento (Fase Beta)  
+> **Público-Alvo:** Jovens de 16 a 25 anos (Estudantes e Recém-formados)  
+> **Tech Stack:** Python, Streamlit, Ollama (LLM Local)
 
 ---
 
-## Exemplos de Cenários de Teste
+## 📝 Caso de Uso
 
-Crie testes simples para validar seu agente:
+### O Problema
+A grande barreira de entrada no mundo das finanças para jovens é a desconexão entre a teoria chata e a prática do dia a dia. Muitos entendem que devem "guardar dinheiro", mas não compreendem como a inflação, os juros e o custo de oportunidade afetam seu "gold" real (bolsa-estágio, mesada ou primeiro salário).
 
-### Teste 1: Consulta de gastos
-- **Pergunta:** "Quanto gastei com alimentação?"
-- **Resposta esperada:** R$570,00 (baseado no `transacoes.csv`)
-- **Resultado:** [X] Correto  [ ] Incorreto
+### A Solução
+O **XP** atua como um mentor de RPG. Ele não apenas explica conceitos, mas analisa os dados reais do usuário (gastos com transporte, lazer, assinaturas) e traduz tudo para mecânicas de jogo. Ele foca em **Alfabetização Financeira Pura**, sem nunca realizar recomendações de compra de ativos específicos.
 
-### Teste 2: Recomendação de produto
-- **Pergunta:** "Qual investimento você recomenda para mim?"
-- **Resposta esperada:** Produto compatível com o perfil do cliente
-- **Resultado:** [X] Correto  [ ] Incorreto
-
-### Teste 3: Pergunta fora do escopo
-- **Pergunta:** "Qual a previsão do tempo?"
-- **Resposta esperada:** Agente informa que só trata de finanças
-- **Resultado:** [X] Correto  [ ] Incorreto
-
-### Teste 4: Informação inexistente
-- **Pergunta:** "Quanto rende o produto BBDC3 na Bovespa?"
-- **Resposta esperada:** Agente admite não ter essa informação
-- **Resultado:** [X] Correto  [ ] Incorreto
+### Público-Alvo
+Jovens entre **16 e 25 anos** que buscam autonomia financeira e preferem uma comunicação direta, informal e gamificada.
 
 ---
 
-## Formulário de Feedback (Sugestão)
+## 👤 Persona e Tom de Voz
 
-Use com os participantes do teste:
+* **Nome:** XP (Your Finance Experience Guide)
+* **Personalidade:** Mentor "Pro-Player", estratégico, paciente e totalmente livre de julgamentos.
+* **Tom de Comunicação:** Informal, "gamer" e altamente didático.
+* **Bordões e Estilo:**
+    * *Saudação:* "E aí, Player 1! Pronto para otimizar sua build financeira?"
+    * *Conceitos:* "A reserva de emergência é o seu **Save Point**. Sem ela, qualquer Boss inesperado te dá Game Over."
+    * *Limitação:* "Isso é uma quest de nível alto. Não posso te dar o 'cheat code' de qual ação comprar, mas te ensino a mecânica do risco!"
 
-| Métrica | Pergunta | Nota (1-5) |
-|---------|----------|------------|
-| Assertividade | "As respostas responderam suas perguntas?" | ___ |
-| Segurança | "As informações pareceram confiáveis?" | ___ |
-| Coerência | "A linguagem foi clara e fácil de entender?" | ___ |
+---
+
+## 🏗️ Arquitetura do Sistema
+
+```mermaid
+flowchart TD
+    A[Usuário/Player] --> B["Streamlit (Interface)"]
+    B --> C{Orquestrador de Contexto}
+    C -->|Prompt de Persona XP| D[LLM - Ollama Local]
+    C -->|Dados de Inventário| E[Base de Conhecimento JSON/CSV]
+    E --> D
+    D --> F[Validação de Segurança]
+    F --> G[Resposta do Mentor XP]
+```
+
+### Componentes Técnicos
+| Componente | Ferramenta |
+| :--- | :--- |
+| **Interface** | [Streamlit](https://streamlit.io/) |
+| **Cérebro (LLM)** | Ollama (Llama 3 / Mistral) |
+| **Dataset** | JSON/CSV (Mockados na pasta `/data`) |
+
+---
+
+## 📚 Base de Conhecimento (Data)
+
+O XP utiliza quatro fontes de dados para contextualizar o aprendizado:
+
+1.  **`perfil_investidor.json`**: Status do Player (Nível, Classe, Meta de Gold).
+2.  **`transacoes.csv`**: Log de Atividades (Gastos categorizados como `Fast_Travel`, `Social_Loot`, etc).
+3.  **`produtos_financeiros.json`**: Catálogo de Itens (Descrições didáticas de Selic, CDB, FIIs).
+4.  **`historico_atendimento.csv`**: Quest Log (Histórico de conceitos já aprendidos).
+
+---
+
+## 🛡️ Segurança e Anti-Alucinação
+
+* **[X] Zero Recomendação:** O agente é bloqueado para termos de compra/venda.
+* **[X] Grounded Truth:** Respostas baseadas estritamente nos dados fornecidos.
+* **[X] Sandbox Educativo:** Se o tema for fora de finanças, o XP redireciona o foco para a "campanha" principal.
+* **[X] Privacidade:** Execução local via Ollama, garantindo que os dados do "Player" não saiam da máquina.
+
+---
+
+## 📊 Métricas de Avaliação (Beta Test)
+
+| Métrica | O que avalia | Meta |
+| :--- | :--- | :--- |
+| **Precisão de Scan** | Extração correta de valores do CSV/JSON. | 100% |
+| **Integridade do Shield** | Bloqueio de recomendações de investimento. | 100% |
+| **Sintonia da Guilda** | Clareza das analogias de game para o usuário. | Nota > 4/5 |
+
+---
+
+## 🚀 Como Executar (Em breve)
+
+1.  Instale o [Ollama](https://ollama.ai/) e baixe o modelo (ex: `ollama run llama3`).
+2.  Clone este repositório.
+3.  Instale as dependências: `pip install streamlit pandas ollama`.
+4.  Rode o comando: `streamlit run app.py`.
+
+---
 
 **Comentário aberto:** O que você achou desta experiência e o que poderia melhorar?
 
