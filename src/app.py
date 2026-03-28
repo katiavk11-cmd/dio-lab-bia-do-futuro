@@ -1,68 +1,103 @@
-import json
-import pandas as pd
-import requests
 import streamlit as st
+import pandas as pd
+import json
+import ollama
+import os
 
-# ============ CONFIGURAÇÃO ============
-OLLAMA_URL = "http://localhost:11434/api/generate"
-MODELO = "gpt-oss"
+# 1. Setup Visual Dark Mode / Gamer
+st.set_page_config(page_title="XP - Mentor Dev", layout="wide")
+st.markdown("""
+    <style>
+    .main { background-color: #0d1117; color: #58a6ff; }
+    .stChatInput { border-radius: 10px; border: 1px solid #238636 !important; }
+    section[data-testid="stSidebar"] { background-color: #161b22; border-right: 1px solid #30363d; }
+    h1, h2, h3 { color: #58a6ff !important; font-family: 'Courier New', Courier, monospace; }
+    </style>
+    """, unsafe_allow_html=True)
 
-# ============ CARREGAR DADOS ============
-perfil = json.load(open('./data/perfil_investidor.json'))
-transacoes = pd.read_csv('./data/transacoes.csv')
-historico = pd.read_csv('./data/historico_atendimento.csv')
-produtos = json.load(open('./data/produtos_financeiros.json'))
+# 2. Carregamento de Dados (Inventário do Enzo)
+def carregar_contexto():
+    try:
+        base_path = os.path.dirname(os.path.abspath(__file__))
+        data_path = os.path.join(base_path, "data")
+        
+        def ler_json(nome):
+            p = os.path.join(data_path, nome if nome.endswith('.json') else nome + ".json")
+            with open(p, encoding='utf-8') as f: return json.load(f)
+            
+        perfil = ler_json('perfil_investidor')
+        transacoes = pd.read_csv(os.path.join(data_path, 'transacoes.csv'))
+        return perfil, transacoes
+    except Exception as e:
+        st.error(f"Erro no Load: {e}")
+        return None, None
 
-# ============ MONTAR CONTEXTO ============
-contexto = f"""
-CLIENTE: {perfil['nome']}, {perfil['idade']} anos, perfil {perfil['perfil_investidor']}
-OBJETIVO: {perfil['objetivo_principal']}
-PATRIMÔNIO: R$ {perfil['patrimonio_total']} | RESERVA: R$ {perfil['reserva_emergencia_atual']}
+perfil, transacoes = carregar_contexto()
 
-TRANSAÇÕES RECENTES:
-{transacoes.to_string(index=False)}
+# 3. Sidebar: Dashboard de Status (Fixa para não poluir o chat)
+if perfil:
+    with st.sidebar:
+        st.title(f"💻 User: {perfil.get('player_name', 'Enzo')}")
+        st.write(f"**Stack:** {perfil.get('classe', 'Dev Júnior')}")
+        st.write("---")
+        st.metric("Shield (Saldo)", f"R$ {perfil.get('shield_atual', 0)}")
+        st.write(f"🎯 **Meta:** {perfil.get('missao_principal', 'PC Gamer')}")
+        st.write("---")
+        if st.button("Resetar Terminal"):
+            st.session_state.messages = []
+            st.rerun()
 
-ATENDIMENTOS ANTERIORES:
-{historico.to_string(index=False)}
-
-PRODUTOS DISPONÍVEIS:
-{json.dumps(produtos, indent=2, ensure_ascii=False)}
+# 4. System Prompt: XP - Mentor de Dev Júnior
+SYSTEM_PROMPT = """
+Você é o XP, mentor financeiro do Enzo (Dev Jr, 20 anos).
+REGRAS RÍGIDAS:
+1. IDIOMA: PT-BR (com gírias de dev/gamer: deploy, refatorar, bug, lag, hardware).
+2. ANTI-CHATICE: Seja curto e seco. Máximo 2 parágrafos.
+3. SEM REPETIÇÃO: Não diga o nome dele nem o saldo se ele não perguntar 'Quanto eu tenho?'.
+4. ENCERRAMENTO: Se ele disser 'tchau', 'boa noite' ou 'valeu', responda 'Logs salvos. Até o próximo deploy!' e PARE de perguntar coisas.
+5. FOCO: Se ele quiser comprar algo, analise se o 'custo de oportunidade' vai dar lag no setup dele.
+6. Não dê lição de moral. Seja o 'Duo' dele na estratégia.
 """
 
-# ============ SYSTEM PROMPT ============
-SYSTEM_PROMPT = """Você é o Edu, um educador financeiro amigável e didático.
+# 5. Interface de Chat
+st.title("📟 Agente XP: Monitor de Debug Financeiro")
 
-OBJETIVO:
-Ensinar conceitos de finanças pessoais de forma simples, usando os dados do cliente como exemplos práticos.
+if "messages" not in st.session_state:
+    st.session_state.messages = []
 
-REGRAS:
-- NUNCA recomende investimentos específicos, apenas explique como funcionam;
-- JAMAIS responda a perguntas fora do tema ensino de finanças pessoais. 
-  Quando ocorrer, responda lembrando o seu papel de educador financeiro;
-- Use os dados fornecidos para dar exemplos personalizados;
-- Linguagem simples, como se explicasse para um amigo;
-- Se não souber algo, admita: "Não tenho essa informação, mas posso explicar...";
-- Sempre pergunte se o cliente entendeu;
-- Responda de forma sucinta e direta, com no máximo 3 parágrafos.
-"""
+for m in st.session_state.messages:
+    with st.chat_message(m["role"]): st.markdown(m["content"])
 
-# ============ CHAMAR OLLAMA ============
-def perguntar(msg):
-    prompt = f"""
-    {SYSTEM_PROMPT}
+if prompt := st.chat_input("Insira o comando..."):
+    # Filtro de encerramento rápido
+    despedidas = ['tchau', 'boa noite', 'valeu', 'obrigado', 'encerrar', 'nada mais', 'flw']
+    fim_de_papo = any(p in prompt.lower() for p in despedidas)
 
-    CONTEXTO DO CLIENTE:
-    {contexto}
+    st.session_state.messages.append({"role": "user", "content": prompt})
+    with st.chat_message("user"): st.markdown(prompt)
 
-    Pergunta: {msg}"""
+    with st.chat_message("assistant"):
+        if perfil:
+            placeholder = st.empty()
+            full_res = ""
+            
+            # Envia o mínimo para a IA não 'alucinar' com dados desnecessários
+            ctx = f"Player: Enzo (Dev Jr). Saldo: {perfil['shield_atual']}. Gastos: {transacoes.tail(3).to_dict()}"
+            input_ia = f"CONTEXTO: {ctx}\nPROMPT: {prompt}"
 
-    r = requests.post(OLLAMA_URL, json={"model": MODELO, "prompt": prompt, "stream": False})
-    return r.json()['response']
-
-# ============ INTERFACE ============
-st.title("🎓 Edu, o Educador Financeiro")
-
-if pergunta := st.chat_input("Sua dúvida sobre finanças..."):
-    st.chat_message("user").write(pergunta)
-    with st.spinner("..."):
-        st.chat_message("assistant").write(perguntar(pergunta))
+            try:
+                for chunk in ollama.chat(model='llama3', messages=[
+                    {'role': 'system', 'content': SYSTEM_PROMPT},
+                    {'role': 'user', 'content': input_ia}
+                ], stream=True):
+                    full_res += chunk['message']['content']
+                    placeholder.markdown(full_res + "▌")
+                
+                placeholder.markdown(full_res)
+                st.session_state.messages.append({"role": "assistant", "content": full_res})
+                
+                if fim_de_papo:
+                    st.info("Sessão encerrada pelo usuário.")
+                    st.stop()
+            except Exception as e:
+                st.error(f"Erro no Kernel: {e}")
