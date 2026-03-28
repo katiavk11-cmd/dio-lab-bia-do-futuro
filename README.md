@@ -1,103 +1,103 @@
-# 🎓 Edu - Educador Financeiro Inteligente
+Para fechar com chave de ouro, aqui está o seu **README.md** totalmente adaptado para a persona **XP**. Removi o tom de "professor" e apliquei a estética **Dev/Gamer** que a gente construiu.
 
-> Agente de IA Generativa que ensina conceitos de finanças pessoais de forma simples e personalizada, usando os próprios dados do cliente como exemplos práticos.
+---
 
-## 💡 O Que é o Edu?
+# 🎮 XP - Mentor de Estratégia Financeira
 
-O Edu é um educador financeiro que **ensina**, não recomenda. Ele explica conceitos como reserva de emergência, tipos de investimentos e análise de gastos usando uma abordagem didática e exemplos concretos baseados no perfil do cliente.
+Agente de IA Generativa que transforma a educação financeira em uma jornada de RPG. O **XP** ensina conceitos de economia de forma épica e personalizada, usando os dados reais do Player para montar a melhor "build" de vida.
 
-**O que o Edu faz:**
-- ✅ Explica conceitos financeiros de forma simples
-- ✅ Usa dados do cliente como exemplos práticos
-- ✅ Responde dúvidas sobre produtos financeiros
-- ✅ Analisa padrões de gastos de forma educativa
+## 💡 O Que é o XP?
 
-**O que o Edu NÃO faz:**
-- ❌ Não recomenda investimentos específicos
-- ❌ Não acessa dados bancários sensíveis
-- ❌ Não substitui um profissional certificado
+O XP é o seu **Duo de Squad** para finanças: ele **ensina**, não recomenda. Ele traduz conceitos chatos como Selic, CDI e Reserva de Emergência para mecânicas de jogo, analisando seu inventário de gastos para você subir de nível sem dar *game over* no saldo.
+
+### ✅ O que o XP faz:
+* **Explica mecânicas:** Traduz o mercado financeiro para linguagem gamer.
+* **Scan de Inventário:** Usa seus dados reais como exemplos práticos.
+* **Quest Log:** Responde dúvidas sobre itens (produtos) financeiros.
+* **Debug de Gastos:** Analisa onde sua Mana está sumindo de forma educativa.
+
+### ❌ O que o XP NÃO faz:
+* **Não dá Cheat Codes:** Proibido recomendar ações ou ativos específicos.
+* **Sem Invasive Mod:** Não acessa dados bancários sensíveis.
+* **NPC de Apoio:** Não substitui um consultor financeiro certificado.
+
+---
 
 ## 🏗️ Arquitetura
 
-```mermaid
-flowchart TD
-    A[Usuário] --> B[Streamlit]
-    B --> C[Ollama - LLM Local]
-    C --> D[Base de Conhecimento]
-    D --> C
-    C --> E[Resposta Educativa]
-```
+**Stack de Tecnologia:**
+* **Interface:** [Streamlit](https://streamlit.io/) (UI Gamer)
+* **LLM:** [Ollama](https://ollama.com/) (Modelo local: `llama3` ou `tinyllama`)
+* **Database:** JSON/CSV mockados para simular o save do player.
 
-**Stack:**
-- Interface: Streamlit
-- LLM: Ollama (modelo local `gpt-oss`)
-- Dados: JSON/CSV mockados
+---
 
 ## 📁 Estrutura do Projeto
 
-```
-├── data/                          # Base de conhecimento
-│   ├── perfil_investidor.json     # Perfil do cliente
-│   ├── transacoes.csv             # Histórico financeiro
-│   ├── historico_atendimento.csv  # Interações anteriores
-│   └── produtos_financeiros.json  # Produtos para ensino
+```text
+├── data/                          # Base de Conhecimento (Inventário)
+│   ├── perfil_investidor.json     # Status e Classe do Player
+│   ├── transacoes.csv             # Log de Gastos (Gold)
+│   ├── historico_atendimento.csv  # Quest Log (Interações)
+│   └── produtos_financeiros.json  # Catálogo de Itens para Ensino
 │
-├── docs/                          # Documentação completa
-│   ├── 01-documentacao-agente.md  # Caso de uso e persona
-│   ├── 02-base-conhecimento.md    # Estratégia de dados
-│   ├── 03-prompts.md              # System prompt e exemplos
-│   ├── 04-metricas.md             # Avaliação de qualidade
-│   └── 05-pitch.md                # Apresentação do projeto
+├── docs/                          # Documentação Técnica
+│   ├── 01-documentacao-agente.md  # Persona XP e Caso de Uso
+│   ├── 02-base-conhecimento.md    # Estratégia de Dados
+│   ├── 03-prompts.md              # System Prompts "Anti-Chatice"
+│   ├── 04-metricas.md             # Avaliação de Damage/Assertividade
+│   └── 05-pitch.md                # Apresentação do Projeto
 │
 └── src/
-    └── app.py                     # Aplicação Streamlit
+    └── app.py                     # Kernel da Aplicação Streamlit
 ```
 
-## 🚀 Como Executar
+---
 
-### 1. Instalar Ollama
+## 🚀 Como Executar o Deploy
 
-```bash
+### 1. Preparar o Servidor (Ollama)
+```powershell
 # Baixar em: ollama.com
-ollama pull gpt-oss
+ollama pull llama3
 ollama serve
 ```
 
-### 2. Instalar Dependências
-
-```bash
-pip install streamlit pandas requests
+### 2. Instalar Dependências (Plugins)
+```powershell
+pip install streamlit pandas ollama
 ```
 
-### 3. Rodar o Edu
-
-```bash
+### 3. Iniciar a Campanha
+```powershell
 streamlit run src/app.py
 ```
 
-## 🎯 Exemplo de Uso
+---
 
-**Pergunta:** "O que é CDI?"  
-**Edu:** "CDI é uma taxa de referência usada pelos bancos. Quando um investimento rende '100% do CDI', significa que ele acompanha essa taxa. Hoje o CDI está próximo da Selic. Quer que eu explique a diferença entre os dois?"
+## 🎯 Exemplos de Diálogo
 
-**Pergunta:** "Onde estou gastando mais?"  
-**Edu:** "Olhando suas transações de outubro, sua maior despesa é moradia (R$ 1.380), seguida de alimentação (R$ 570). Juntas, representam quase 80% dos seus gastos. Isso é bem comum! Quer que eu explique algumas estratégias de organização?"
+**Player:** *"O que é CDI?"* **XP:** "O CDI é a taxa de atualização do servidor dos bancos. Se um item rende 100% do CDI, ele acompanha o meta atual do mercado. Quer ver como isso buffa seu Shield (Reserva)?"
+
+**Player:** *"Onde está sumindo meu gold?"* **XP:** "Dando um scan no seu log de outubro: o **'Social Loot'** (R$ 450) está drenando sua Mana mais rápido que o **'Supermercado'** (R$ 300). Sua build está muito focada em exploração! Bora refatorar esses gastos?"
+
+---
 
 ## 📊 Métricas de Avaliação
 
 | Métrica | Objetivo |
-|---------|----------|
-| **Assertividade** | O agente responde o que foi perguntado? |
-| **Segurança** | Evita inventar informações (anti-alucinação)? |
-| **Coerência** | A resposta é adequada ao perfil do cliente? |
+| :--- | :--- |
+| **Assertividade** | O XP respondeu a quest financeira corretamente? |
+| **Shield (Segurança)** | O agente evitou recomendar a compra de ativos? |
+| **Ping (Coerência)** | A resposta faz sentido com a classe do Player (Enzo/Dev)? |
 
-## 🎬 Diferenciais
+---
 
-- **Personalização:** Usa os dados do próprio cliente nos exemplos
-- **100% Local:** Roda com Ollama, sem enviar dados para APIs externas
-- **Educativo:** Foco em ensinar, não em vender produtos
-- **Seguro:** Estratégias de anti-alucinação documentadas
+## 🎬 Diferenciais do XP
 
-## 📝 Documentação Completa
+* **Persona Gamer:** Linguagem informal de programador para programador.
+* **100% Local:** Roda com Ollama. Seus dados financeiros não saem do seu servidor.
+* **Educação Estratégica:** Foco em ensinar a mecânica, não em vender o loot.
+* **Anti-Chatice:** Respostas curtas, diretas e sem enrolação de NPC.
 
-Toda a documentação técnica, estratégias de prompt e casos de teste estão disponíveis na pasta [`docs/`](./docs/).
+
