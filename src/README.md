@@ -1,8 +1,3 @@
-O passo a passo está quase perfeito, mas como mudamos o modelo para o **llama3** (ou **tinyllama**) e o seu ambiente é o Windows com o código dentro da pasta `src` ou na raiz, precisamos ajustar os comandos para você não ter erro de "file not found" ou "model not found".
-
-Aqui está a versão corrigida e sincronizada com o que rodamos no seu PC:
-
----
 
 # 🚀 Passo a Passo de Execução: Agente XP
 
