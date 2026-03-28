@@ -1,23 +1,9 @@
 {
-  "player_name": "Ricardo Ribeiro",
-  "level": 21,
-  "classe": "Estudante / Estagiário",
-  "mana_mensal": 1500.00,
-  "estilo_de_jogo": "Defensivo (Iniciante)",
-  "missao_principal": "Construir Save Point (Reserva de Emergência)",
-  "inventario_total": 2000.00,
-  "shield_atual": 500.00,
-  "resistencia_a_dano": false,
-  "quest_log": [
-    {
-      "objetivo": "Completar o Shield (Reserva de Emergência)",
-      "gold_necessario": 5000.00,
-      "deadline": "2026-12"
-    },
-    {
-      "objetivo": "Upgrade de Equipamento (Intercâmbio / Notebook)",
-      "gold_necessario": 12000.00,
-      "deadline": "2027-12"
-    }
-  ]
+  "player_name": "Enzo",
+  "idade": 20,
+  "classe": "Dev Júnior / Programador",
+  "mana_mensal": 3200.0,
+  "shield_atual": 850.0,
+  "missao_principal": "Montar PC Gamer & Curso de Backend",
+  "estilo_de_jogo": "Aggressive Farmer (Quer crescer rápido)"
 }
