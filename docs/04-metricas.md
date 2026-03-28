@@ -97,15 +97,26 @@ O XP utiliza quatro fontes de dados para contextualizar o aprendizado:
 ---
 
 **Comentário aberto:** O que você achou desta experiência e o que poderia melhorar?
-
----
+A experiência de integrar uma LLM local (Ollama) com uma interface rápida (Streamlit) mostrou que é possível criar um assistente personalizado sem depender de APIs pagas ou enviar dados para a nuvem. O maior desafio foi "adestrar" a IA: no início, ela era prolixa, repetitiva e formal demais (o famoso erro de "persona"). Ajustar o System Prompt e filtrar os dados de entrada foi a chave para transformar um "manual de instruções vivo" em um mentor de estratégia que realmente fala a língua do usuário.
 
 ## Resultados
 
 Após os testes, registre suas conclusões:
 
 **O que funcionou bem:**
-- [Liste aqui]
+Privacidade e Performance Local: Rodar o llama3 via Ollama garantiu que os dados financeiros não saíssem da máquina, com um tempo de resposta aceitável após o primeiro carregamento.
+
+Interface Sidebar: Isolar os dados de "Status do Player" (Saldo/Meta) na lateral limpou o chat e evitou que a IA precisasse repetir valores em toda frase.
+
+Customização de Persona: A transição do perfil "Ricardo" para "Enzo" mostrou a versatilidade do sistema em mudar o tom de voz apenas alterando um arquivo JSON e o prompt mestre.
+
+Controle de Fluxo: A implementação de gatilhos de encerramento (tchau/valeu) resolveu o problema da IA ficar "forçando" interação infinita.
 
 **O que pode melhorar:**
-- [Liste aqui]
+Latência de Inicialização: O "Cold Start" do modelo ainda é um gargalo; o usuário precisa esperar alguns segundos na primeira interação.
+
+Memória de Curto Prazo: Em conversas muito longas, a IA ainda tende a "esquecer" restrições de estilo (como o limite de 2 parágrafos) se não houver uma limpeza de cache periódica.
+
+Refinamento de Contexto: O agente ainda depende muito de texto. A experiência seria superior com a integração de gráficos dinâmicos (como st.bar_chart) para visualizar o histórico de gastos sem precisar ler resumos textuais.
+
+Tratamento de Alucinações: Eventualmente, a IA inventa termos (como o "Kraaaos") se o prompt de entrada vier com caracteres estranhos ou arquivos mal formatados.
