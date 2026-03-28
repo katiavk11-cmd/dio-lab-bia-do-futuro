@@ -57,4 +57,5 @@ pip install streamlit pandas ollama
 
 ## Evidência de Execução
 
-data/Tela.png
+
+<img width="1013" height="560" alt="Tela" src="https://github.com/user-attachments/assets/a4a4505f-c520-4f05-bf15-dba5a56102b3" />
