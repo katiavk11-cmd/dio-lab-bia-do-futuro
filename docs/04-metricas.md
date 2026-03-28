@@ -1,6 +1,4 @@
-Aqui está a documentação completa e refinada do **Agente XP**, estruturada em Markdown para você copiar e colar diretamente no `README.md` do seu repositório no GitHub.
 
----
 
 # 🎮 Agente XP: Seu Mentor de Estratégia Financeira
 
