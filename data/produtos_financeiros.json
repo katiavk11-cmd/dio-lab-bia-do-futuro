@@ -1,42 +1,37 @@
 [
   {
-    "item": "Tesouro Selic",
-    "classe": "Shield (Defesa)",
-    "nivel_de_risco": "Level 1 (Seguro)",
-    "multiplicador_xp": "100% da Selic",
-    "custo_entrada": 30.00,
-    "lore": "O item básico para quem está começando o mapa. Ideal para build de 'Reserva de Emergência' (seu Save Point)."
+    "nome": "Poupança",
+    "tipo": "Renda Fixa",
+    "descricao": "O investimento mais básico. Rende 70% da Selic + TR quando a taxa está acima de 8.5%.",
+    "analogia_gamer": "É o item inicial do jogo. Seguro, mas o XP (rendimento) é baixíssimo. Serve apenas como 'Save Point' temporário.",
+    "risco": "Mínimo"
   },
   {
-    "item": "CDB Liquidez Diária",
-    "classe": "Poção de Stamina",
-    "nivel_de_risco": "Level 1 (Seguro)",
-    "multiplicador_xp": "102% do CDI",
-    "custo_entrada": 100.00,
-    "lore": "Garante que seu gold renda todo dia, mas permite que você saque rápido se precisar de mana para uma emergência."
+    "nome": "CDB",
+    "tipo": "Renda Fixa",
+    "descricao": "Certificado de Depósito Bancário. Você empresta dinheiro para o banco financiar suas atividades.",
+    "analogia_gamer": "Um 'Buff' de mana constante. Pode render mais que a poupança e tem proteção do FGC (Shield de conta).",
+    "risco": "Baixo"
   },
   {
-    "item": "LCI/LCA",
-    "classe": "Escudo de Invisibilidade de Taxas",
-    "nivel_de_risco": "Level 1 (Seguro)",
-    "multiplicador_xp": "95% do CDI (Isento de IR)",
-    "custo_entrada": 1000.00,
-    "lore": "Um item especial que o 'Boss do Governo' não consegue taxar. Mas atenção: ele fica em cooldown (bloqueado) por 90 dias."
+    "nome": "LCI / LCA",
+    "tipo": "Renda Fixa",
+    "descricao": "Letras de Crédito Imobiliário ou do Agronegócio. Isentas de Imposto de Renda.",
+    "analogia_gamer": "Itens lendários de Renda Fixa. O loot vem limpo, sem o 'debuff' do Leão (Imposto de Renda).",
+    "risco": "Baixo"
   },
   {
-    "item": "Fundo Imobiliário (FII)",
-    "classe": "Farm de Gold Mensal",
-    "nivel_de_risco": "Level 2 (Moderado)",
-    "multiplicador_xp": "Dividendos de 0.5% a 1% ao mês",
-    "custo_entrada": 100.00,
-    "lore": "É como ter um terreno no mapa do jogo que gera aluguel. Ótimo para diversificar sua build e ganhar renda passiva."
+    "nome": "Criptomoedas",
+    "tipo": "Renda Variável",
+    "descricao": "Ativos digitais descentralizados como Bitcoin e Ethereum. Alta volatilidade.",
+    "analogia_gamer": "Dungeon de Nível Hardcore. O loot pode ser épico (lua), mas o 'Damage' (queda) pode zerar seu HP rápido. Use apenas se tiver Shield sobrando.",
+    "risco": "Altíssimo"
   },
   {
-    "item": "Fundo de Ações",
-    "classe": "Dungeon de Alto Risco",
-    "nivel_de_risco": "Level 3 (Arrojado)",
-    "multiplicador_xp": "Variável (Alta Volatilidade)",
-    "custo_entrada": 100.00,
-    "lore": "Para quem já tem um set de equipamentos forte e busca os maiores loots no longo prazo. Prepare-se para oscilações no HP!"
+    "nome": "Tesouro Direto",
+    "tipo": "Renda Fixa",
+    "descricao": "Empréstimo para o Governo Federal. O investimento mais seguro do país.",
+    "analogia_gamer": "O Servidor Oficial. É onde o governo guarda o Gold. Muito difícil de cair, ótimo para builds de longo prazo.",
+    "risco": "Mínimo"
   }
 ]
