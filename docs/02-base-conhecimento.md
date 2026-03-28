@@ -1,5 +1,3 @@
-Aqui está o texto completo, formatado estritamente conforme o padrão solicitado (Markdown, sem emojis, com perguntas em citação e respostas fora):
-
 # Base de Conhecimento: Agente XP
 
 > [!TIP]
